@@ -80,6 +80,28 @@ namespace Ferreteria.Clases
                 TotalFactura = 4200
             }
         };
+        public List<DetalleFactura> DetalleFactura = new List<DetalleFactura>(){
+            new DetalleFactura(){
+                Id=1,
+                NroFactura=1,
+                IdProducto=1,
+                Cantidad=3,
+                Valor=9000},
+            new DetalleFactura(){
+                Id=2,
+                NroFactura=1,
+                IdProducto=1,
+                Cantidad=8,
+                Valor=24000},
+            new DetalleFactura()
+            {
+                Id=3,
+                NroFactura=1,
+                IdProducto=2,
+                Cantidad=5,
+                Valor=14000},
+      
+        };
 
         public void fecha()
         {
@@ -146,7 +168,7 @@ namespace Ferreteria.Clases
                            where p.Cantidad < p.StockMin
                            select p).ToList();
             if (comprar.Count() != 0)
-            {   
+            {
                 System.Console.WriteLine("Productos Para Comprar");
                 foreach (var item in comprar)
                 {
@@ -162,25 +184,39 @@ namespace Ferreteria.Clases
 
         }
 
-        public void ValorInventario(){
-            var productos = (from p in Productos select p ).ToList();
-            var valor =0;
+        public void ValorInventario()
+        {
+            var productos = (from p in Productos select p).ToList();
+            var valor = 0;
             System.Console.WriteLine("Valor Inventario");
-            foreach(var item in productos){
-                 valor+= item.Cantidad*item.PrecioUnit;
-                 System.Console.WriteLine($"Producto:{item.Nombre}-Precio Unitario:{item.PrecioUnit}-Cantidad Producto:{item.Cantidad}");
+            foreach (var item in productos)
+            {
+                valor += item.Cantidad * item.PrecioUnit;
+                System.Console.WriteLine($"Producto:{item.Nombre}-Precio Unitario:{item.PrecioUnit}-Cantidad Producto:{item.Cantidad}");
             }
             System.Console.WriteLine($"Valor Total Inventario :{valor}");
 
         }
 
-        public void ProductosFactura(){
+        public void ProductosFactura()
+        {
             Console.WriteLine("Ingrese el id de la factura a buscar");
-            int facturaBuscar= Console.Read();
-            var proFactura = (from p in Productos where p.Id ==facturaBuscar select p).ToList();
-            if (proFactura.Count()!=0){
-                
-            }else{
+            var facturaBuscar = Convert.ToInt32(Console.ReadLine());
+            var proFactura = (from f in Facturas where f.NroFactura == facturaBuscar select f).ToList();
+            if (proFactura.Count() != 0)
+            {
+                var detalleFactura = (from d in DetalleFactura 
+                                        join pro in Productos
+                                        on d.IdProducto equals pro.Id
+                                        select new {
+                                            nombre = pro.Nombre,
+                                            ValorFactura = d.Valor
+                                        }
+                ).ToList();
+                detalleFactura.ForEach(x => System.Console.WriteLine($"Nombre Producto:{x.nombre}-Valor Productos{x.ValorFactura}"));
+            }
+            else
+            {
                 System.Console.WriteLine("No se encuentran facturas con el id ingresado.");
             }
         }
