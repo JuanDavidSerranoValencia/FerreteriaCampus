@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ruE4VYeyi+QGQaCfTKiVoKEs5Hl/aSL+x7BTOYa13rgJBGLqi2OIMEyu5/mO4FROrqTPYSA5ihnQ3LFkUbEI9g==",
+  "dgSpecHash": "FZ+NBe0I6r5IJ1WQlxc2PMs+TLvZMGRXm3rnedLOJckp4Ils5ZwEEeh16nWRZYTD9XojuJiaefoMp2ptFBJPyQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\APM02-55\\Documents\\Ferreteria\\Ferreteria\\Ferreteria.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\APM02-55\\Documents\\FerreteriaCampus\\Ferreteria\\Ferreteria.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\APM02-55\\.nuget\\packages\\consoletables\\2.6.1\\consoletables.2.6.1.nupkg.sha512"
+  ],
   "logs": []
 }
